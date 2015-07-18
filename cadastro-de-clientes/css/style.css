@@ -1,0 +1,19 @@
+
+@import url('bootstrap.min.css');
+@import url('bootstrap-theme.min.css');
+
+.btn-ordenacao{
+    float:left;
+}
+.cliente{
+    cursor:pointer;
+}
+.lista{
+    float:left;
+    clear:both;
+    padding: 25px 0px;
+}
+.info-cliente{
+    padding-top: 7px;
+    display:none;
+}
