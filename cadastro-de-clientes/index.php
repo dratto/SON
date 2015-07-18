@@ -6,16 +6,16 @@ $ordenacao_vl = ($_POST["ordenacao"] == "ascendente") ? "descendente" : "ascende
 
 
 $clientes = [
-        $cliente1  = new Cliente("Carlos","065.485.999-78","Rua Pereira Coutinho, 627","99234-9448"),
-        $cliente2  = new Cliente("Salma","067.175.889-13","Rua Opala, 23","99755-0965"),
-        $cliente3  = new Cliente("Jonas","067.175.889-13","Rua Anita Costa, 395","94508-2508"),
-        $cliente4  = new Cliente("Maria","067.175.889-13","Rua Anita Costa, 395","94508-2508"),
-        $cliente5  = new Cliente("Antonio","067.175.889-13","Rua Anita Costa, 395","94508-2508"),
-        $cliente6  = new Cliente("Decio","067.175.889-13","Rua Anita Costa, 395","94508-2508"),
-        $cliente7  = new Cliente("Lucia","067.175.889-13","Rua Anita Costa, 395","94508-2508"),
-        $cliente8  = new Cliente("Vanderli","067.175.889-13","Rua Anita Costa, 395","94508-2508"),
-        $cliente9  = new Cliente("Daisy","067.175.889-13","Rua Anita Costa, 395","94508-2508"),
-        $cliente10 = new Cliente("Débora","067.175.889-13","Rua Anita Costa, 395","94508-2508"),
+        new Cliente("Carlos","065.485.999-78","Rua Pereira Coutinho, 627","99234-9448"),
+        new Cliente("Salma","067.175.889-13","Rua Opala, 23","99755-0965"),
+        new Cliente("Jonas","067.175.889-13","Rua Anita Costa, 395","94508-2508"),
+        new Cliente("Maria","067.175.889-13","Rua Anita Costa, 395","94508-2508"),
+        new Cliente("Antonio","067.175.889-13","Rua Anita Costa, 395","94508-2508"),
+        new Cliente("Decio","067.175.889-13","Rua Anita Costa, 395","94508-2508"),
+        new Cliente("Lucia","067.175.889-13","Rua Anita Costa, 395","94508-2508"),
+        new Cliente("Vanderli","067.175.889-13","Rua Anita Costa, 395","94508-2508"),
+        new Cliente("Daisy","067.175.889-13","Rua Anita Costa, 395","94508-2508"),
+        new Cliente("Débora","067.175.889-13","Rua Anita Costa, 395","94508-2508")
 ];
 if($ordenacao_vl == "ascendente") {
     sort($clientes);
