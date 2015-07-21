@@ -17,3 +17,25 @@
     padding-top: 7px;
     display:none;
 }
+.lista i{
+    margin-left:15px;
+}
+.stars{
+    float:right;
+    color: #daa520;
+}
+.stars-1:before{
+    content: "★☆☆☆☆";
+}
+.stars-2:before{
+    content: "★★☆☆☆";
+}
+.stars-3:before{
+    content: "★★★☆☆";
+}
+.stars-4:before{
+    content: "★★★★☆";
+}
+.stars-5:before{
+    content: "★★★★★";
+}

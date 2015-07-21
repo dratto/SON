@@ -1,21 +1,24 @@
 <?php
-
+ini_set("display_errors", 1);
+require_once __DIR__.'/ClienteInterface.php';
 require_once __DIR__.'/Cliente.php';
+require_once __DIR__.'/PessoaFisica.php';
+require_once __DIR__.'/PessoaJuridica.php';
 
 $ordenacao_vl = ($_POST["ordenacao"] == "ascendente") ? "descendente" : "ascendente" ; 
 
 
 $clientes = [
-        new Cliente("Carlos","065.485.999-78","Rua Pereira Coutinho, 627","99234-9448"),
-        new Cliente("Salma","067.175.889-13","Rua Opala, 23","99755-0965"),
-        new Cliente("Jonas","067.175.889-13","Rua Anita Costa, 395","94508-2508"),
-        new Cliente("Maria","067.175.889-13","Rua Anita Costa, 395","94508-2508"),
-        new Cliente("Antonio","067.175.889-13","Rua Anita Costa, 395","94508-2508"),
-        new Cliente("Decio","067.175.889-13","Rua Anita Costa, 395","94508-2508"),
-        new Cliente("Lucia","067.175.889-13","Rua Anita Costa, 395","94508-2508"),
-        new Cliente("Vanderli","067.175.889-13","Rua Anita Costa, 395","94508-2508"),
-        new Cliente("Daisy","067.175.889-13","Rua Anita Costa, 395","94508-2508"),
-        new Cliente("Débora","067.175.889-13","Rua Anita Costa, 395","94508-2508")
+        new PessoaFisica("Carlos","065.485.999-78","Rua Pereira Coutinho, 627","99234-9448", 5),
+        new PessoaFisica("Salma","067.175.889-13","Rua Opala, 23","99755-0965",4, "Rua Pereira da Silva, 800"),
+        new PessoaFisica("Jonas","067.175.889-13","Rua Anita Costa, 395","94508-2508",3),
+        new PessoaFisica("Maria","067.175.889-13","Rua Anita Costa, 395","94508-2508",2),
+        new PessoaFisica("Antonio","067.175.889-13","Rua Anita Costa, 395","94508-2508",1),
+        new PessoaJuridica("Decio","067.175.889-13","Rua Anita Costa, 395","94508-2508",3, "Rua Jaqueline Montanha, 67"),
+        new PessoaJuridica("Lucia","067.175.889-13","Rua Anita Costa, 395","94508-2508",4),
+        new PessoaJuridica("Vanderli","067.175.889-13","Rua Anita Costa, 395","94508-2508",2, "Avenida Paulista, 105"),
+        new PessoaJuridica("Daisy","067.175.889-13","Rua Anita Costa, 395","94508-2508",1),
+        new PessoaJuridica("Débora","067.175.889-13","Rua Anita Costa, 395","94508-2508",5)
 ];
 if($ordenacao_vl == "ascendente") {
     sort($clientes);
@@ -45,14 +48,24 @@ if($ordenacao_vl == "ascendente") {
                         <?php
                             $html = "";
                             foreach($clientes as $cliente) {
+                                $tipo = $cliente->getTipo();
                                 $html.= "<li class='list-group-item cliente'>";
-                                $html.= "<b>{$cliente->nome}</b>";
+                                $html.= "<b>{$cliente->getNome()}</b>";
+                                $html.= "<i>Pessoa {$tipo}</i>";
+                                $html.= "<span class='stars stars-{$cliente->getNota()}'></span>";
                                 $html.= "<div class='info-cliente'>";
                                 $html.= "   <p>";
-                                $html.= "       <b>CPF:</b> {$cliente->cpf}<br>";
-                                $html.= "       <b>Endereço:</b>{$cliente->endereco}<br>";
-                                $html.= "       <b>Telefone:</b>{$cliente->telefone}";
-                                $html.= "   <p>";
+                                if($tipo == "fisica") {
+                                    $html.= "       <b>CPF:</b> {$cliente->getCpf()}<br>";
+                                } else {
+                                    $html.= "       <b>CNPJ:</b> {$cliente->getCnpj()}<br>";
+                                }
+                                $html.= "       <b>Endereço:</b>{$cliente->getEndereco()}<br>";
+                                $html.= "       <b>Telefone:</b>{$cliente->getTelefone()}<br>";
+                                if($cliente->getEnderecoCobranca() != null) {
+                                    $html.= "<b>Endereço para cobrança:</b>{$cliente->getEnderecoCobranca()}";
+                                }
+                                $html.= "   </p>";
                                 $html.= "</div>";
                             }
                             echo $html;

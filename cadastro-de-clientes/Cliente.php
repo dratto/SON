@@ -5,18 +5,55 @@
  * @author Diogo Ratto <contato@diogoratto.com.br>
  * 
  */
-class Cliente {
+class Cliente implements ClienteInterface {
     
-    public $nome;
-    public $cpf;
-    public $endereco;
-    public $telefone;
-    
-    public function __construct($nome,$cpf,$endereco,$telefone) {
-        $this->nome = $nome;
-        $this->cpf = $cpf;
-        $this->endereco = $endereco;
-        $this->telefone = $telefone;
+    protected $nome;
+    protected $endereco;
+    protected $enderecoCobranca;
+    protected $telefone;
+    protected $nota;
+    protected $tipo;
+
+    public function getNome() {
+        return $this->nome;
     }
-    
+    public function setNome($nome) {
+        $this->nome = $nome;
+        return $this;
+    }
+    public function getEndereco() {
+        return $this->endereco;
+    }
+    public function setEndereco($endereco) {
+        $this->endereco = $endereco;
+        return $this;
+    }
+    public function gettelefone() {
+        return $this->telefone;
+    }
+    public function setTelefone($telefone) {
+        $this->telefone = $telefone;
+        return $this;
+    }
+    public function getNota() {
+        return $this->nota;
+    }
+    public function setNota($nota) {
+        $this->nota = $nota;
+        return $this;
+    }
+    public function getTipo() {
+        return $this->tipo;
+    }
+    public function setTipo($tipo) {
+        $this->tipo = $tipo;
+        return $this;
+    }
+    public function getEnderecoCobranca() {
+        return $this->enderecoCobranca;
+    }
+    public function setEnderecoCobranca($enderecoCobranca) {
+        $this->enderecoCobranca = $enderecoCobranca;
+        return $this;
+    }
 }
