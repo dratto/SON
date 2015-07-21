@@ -5,7 +5,7 @@
  * @author Diogo Ratto <contato@diogoratto.com.br>
  * 
  */
-class Cliente implements ClienteInterface {
+class Cliente implements EnderecoCobrancaInterface,  GrauImportanciaInterface {
     
     protected $nome;
     protected $endereco;

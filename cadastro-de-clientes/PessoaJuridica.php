@@ -5,7 +5,7 @@
  *
  * @author Diogo Ratto <contato@diogoratto.com.br>
  */
-class PessoaJuridica extends Cliente {
+class PessoaJuridica extends Cliente implements PJInterface {
         
     private $cnpj;
     
@@ -18,10 +18,10 @@ class PessoaJuridica extends Cliente {
              ->setEnderecoCobranca($enderecoCobranca);
         $this->cnpj = $cnpj;
     }
-    public function getCnpj() {
+    public function getCNPJ() {
         return $this->cnpj;
     }
-    public function setCnpj($cnpj) {
+    public function setCNPJ($cnpj) {
         $this->cnpj = $cnpj;
         return $this;
     }

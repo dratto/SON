@@ -5,7 +5,7 @@
  *
  * @author Diogo Ratto <contato@diogoratto.com.br>
  */
-class PessoaFisica extends Cliente {
+class PessoaFisica extends Cliente implements PFInterface {
     
     private $cpf;   
     
@@ -18,10 +18,10 @@ class PessoaFisica extends Cliente {
              ->setEnderecoCobranca($enderecoCobranca);
         $this->cpf = $cpf;
     }
-    public function getCpf() {
+    public function getCPF() {
         return $this->cpf;        
     }
-    public function setCpf($cpf) {
+    public function setCPF($cpf) {
         $this->cpf = $cpf;
         return $this;
     }

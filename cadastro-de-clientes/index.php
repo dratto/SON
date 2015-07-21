@@ -1,5 +1,8 @@
 <?php
-require_once __DIR__.'/ClienteInterface.php';
+require_once __DIR__.'/EnderecoCobrancaInterface.php';
+require_once __DIR__.'/GrauImportanciaInterface.php';
+require_once __DIR__.'/PFInterface.php';
+require_once __DIR__.'/PJInterface.php';
 require_once __DIR__.'/Cliente.php';
 require_once __DIR__.'/PessoaFisica.php';
 require_once __DIR__.'/PessoaJuridica.php';
