@@ -1,5 +1,9 @@
 <?php
 
+namespace SON\Cliente\Types;
+
+use SON\Cliente\Cliente;
+use SON\Cliente\Interfaces\PFInterface;
 /**
  * Description of PessoaFisica
  *

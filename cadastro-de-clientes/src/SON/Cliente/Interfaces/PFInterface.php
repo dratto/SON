@@ -1,6 +1,6 @@
 <?php
 
-
+namespace SON\Cliente\Interfaces;
 /**
  *
  * @author Diogo Ratto <contato@diogoratto.com.br>

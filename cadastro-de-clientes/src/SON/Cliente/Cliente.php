@@ -1,4 +1,9 @@
 <?php
+
+namespace SON\Cliente;
+
+use SON\Cliente\Interfaces\EnderecoCobrancaInterface;
+use SON\Cliente\Interfaces\GrauImportanciaInterface;
 /**
  * Description of Cliente
  *
