@@ -7,16 +7,16 @@ $ordenacao_vl = ($_POST["ordenacao"] == "ascendente") ? "descendente" : "ascende
 
 
 $clientes = [
-        new PessoaFisica("Carlos","065.485.999-78","Rua Pereira Coutinho, 627","99234-9448", 5),
-        new PessoaFisica("Salma","067.175.889-13","Rua Opala, 23","99755-0965",4, "Rua Pereira da Silva, 800"),
-        new PessoaFisica("Jonas","067.175.889-13","Rua Anita Costa, 395","94508-2508",3),
-        new PessoaFisica("Maria","067.175.889-13","Rua Anita Costa, 395","94508-2508",2),
-        new PessoaFisica("Antonio","067.175.889-13","Rua Anita Costa, 395","94508-2508",1),
-        new PessoaJuridica("Decio","067.175.889-13","Rua Anita Costa, 395","94508-2508",3, "Rua Jaqueline Montanha, 67"),
-        new PessoaJuridica("Lucia","067.175.889-13","Rua Anita Costa, 395","94508-2508",4),
-        new PessoaJuridica("Vanderli","067.175.889-13","Rua Anita Costa, 395","94508-2508",2, "Avenida Paulista, 105"),
-        new PessoaJuridica("Daisy","067.175.889-13","Rua Anita Costa, 395","94508-2508",1),
-        new PessoaJuridica("Débora","067.175.889-13","Rua Anita Costa, 395","94508-2508",5)
+        new SON\Cliente\Types\PessoaFisica("Carlos","065.485.999-78","Rua Pereira Coutinho, 627","99234-9448", 5),
+        new SON\Cliente\Types\PessoaFisica("Salma","067.175.889-13","Rua Opala, 23","99755-0965",4, "Rua Pereira da Silva, 800"),
+        new SON\Cliente\Types\PessoaFisica("Jonas","067.175.889-13","Rua Anita Costa, 395","94508-2508",3),
+        new SON\Cliente\Types\PessoaFisica("Maria","067.175.889-13","Rua Anita Costa, 395","94508-2508",2),
+        new SON\Cliente\Types\PessoaFisica("Antonio","067.175.889-13","Rua Anita Costa, 395","94508-2508",1),
+        new SON\Cliente\Types\PessoaJuridica("Decio","067.175.889-13","Rua Anita Costa, 395","94508-2508",3, "Rua Jaqueline Montanha, 67"),
+        new SON\Cliente\Types\PessoaJuridica("Lucia","067.175.889-13","Rua Anita Costa, 395","94508-2508",4),
+        new SON\Cliente\Types\PessoaJuridica("Vanderli","067.175.889-13","Rua Anita Costa, 395","94508-2508",2, "Avenida Paulista, 105"),
+        new SON\Cliente\Types\PessoaJuridica("Daisy","067.175.889-13","Rua Anita Costa, 395","94508-2508",1),
+        new SON\Cliente\Types\PessoaJuridica("Débora","067.175.889-13","Rua Anita Costa, 395","94508-2508",5)
 ];
 if($ordenacao_vl == "ascendente") {
     sort($clientes);
