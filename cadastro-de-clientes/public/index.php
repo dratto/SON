@@ -1,7 +1,10 @@
 <?php
-define('CLASS_DIR', 'src/');
+define('CLASS_DIR', __DIR__ . '/../src/');
 set_include_path(get_include_path().PATH_SEPARATOR.CLASS_DIR);
-spl_autoload_register();
+function my_autoload ($pClassName) {
+    require_once CLASS_DIR . str_replace("\\", "/", $pClassName) . ".php";
+}
+spl_autoload_register("my_autoload");
 
 $ordenacao_vl = ($_POST["ordenacao"] == "ascendente") ? "descendente" : "ascendente" ; 
 
@@ -30,10 +33,9 @@ if($ordenacao_vl == "ascendente") {
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Cadastro de clientes | SON - POO</title>
-        <link href="css/style.css" rel="stylesheet">        
+        <title>Cadastro de clientes | SON - POO</title>              
     </head>
-    <body>
+    <body>          
         <div class="container">
             <div class="listagem">
                 <h1>Listagem de clientes</h1> 
@@ -41,6 +43,7 @@ if($ordenacao_vl == "ascendente") {
                     <input type="hidden" name="ordenacao" value="<?php echo $ordenacao_vl ?>">
                     <button class="btn btn-lg btn-primary btn-ordenacao">Mudar ordenação</button>
                 </form>
+                <?php if(is_array($clientes)): ?>
                 <div class="col-sm-4 lista">
                     <ul class="list-group">                        
                         <?php
@@ -70,8 +73,10 @@ if($ordenacao_vl == "ascendente") {
                         ?>
                     </ul>
                 </div>
+                <?php endif; ?>
             </div>
         </div>                
+        <link href="css/style.css" rel="stylesheet">
         <script src="js/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/utils.js"></script>
