@@ -29,4 +29,7 @@ class PessoaFisica extends Cliente implements PFInterface {
         $this->cpf = $cpf;
         return $this;
     }
+    public function getCodigo() {
+        return $this->cpf;
+    }
 }

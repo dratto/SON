@@ -57,7 +57,7 @@ class Cliente implements EnderecoCobrancaInterface,  GrauImportanciaInterface {
     public function getEnderecoCobranca() {
         return $this->enderecoCobranca;
     }
-    public function setEnderecoCobranca($enderecoCobranca) {
+    public function setEnderecoCobranca($enderecoCobranca = null) {
         $this->enderecoCobranca = $enderecoCobranca;
         return $this;
     }

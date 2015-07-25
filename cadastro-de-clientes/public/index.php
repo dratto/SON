@@ -6,26 +6,14 @@ function my_autoload ($pClassName) {
 }
 spl_autoload_register("my_autoload");
 
-$ordenacao_vl = ($_POST["ordenacao"] == "ascendente") ? "descendente" : "ascendente" ; 
+$ordenacao = ($_POST["ordenacao"] == "ASC") ? "DESC" : "ASC" ; 
 
+$cliente = new SON\Cliente\Types\PessoaJuridica("Carlos","065.485.999-78","Rua Pereira Coutinho, 627","99234-9448", 5);
+$db = new SON\DB\DBConection();
+$db->persist($cliente);
+$db->flush();
 
-$clientes = [
-        new SON\Cliente\Types\PessoaFisica("Carlos","065.485.999-78","Rua Pereira Coutinho, 627","99234-9448", 5),
-        new SON\Cliente\Types\PessoaFisica("Salma","067.175.889-13","Rua Opala, 23","99755-0965",4, "Rua Pereira da Silva, 800"),
-        new SON\Cliente\Types\PessoaFisica("Jonas","067.175.889-13","Rua Anita Costa, 395","94508-2508",3),
-        new SON\Cliente\Types\PessoaFisica("Maria","067.175.889-13","Rua Anita Costa, 395","94508-2508",2),
-        new SON\Cliente\Types\PessoaFisica("Antonio","067.175.889-13","Rua Anita Costa, 395","94508-2508",1),
-        new SON\Cliente\Types\PessoaJuridica("Decio","067.175.889-13","Rua Anita Costa, 395","94508-2508",3, "Rua Jaqueline Montanha, 67"),
-        new SON\Cliente\Types\PessoaJuridica("Lucia","067.175.889-13","Rua Anita Costa, 395","94508-2508",4),
-        new SON\Cliente\Types\PessoaJuridica("Vanderli","067.175.889-13","Rua Anita Costa, 395","94508-2508",2, "Avenida Paulista, 105"),
-        new SON\Cliente\Types\PessoaJuridica("Daisy","067.175.889-13","Rua Anita Costa, 395","94508-2508",1),
-        new SON\Cliente\Types\PessoaJuridica("Débora","067.175.889-13","Rua Anita Costa, 395","94508-2508",5)
-];
-if($ordenacao_vl == "ascendente") {
-    sort($clientes);
-} else {
-    rsort($clientes);
-}
+$clientes = $db->getClientes($ordenacao);
 ?>
 <!DOCTYPE html>
 <html>
@@ -43,28 +31,28 @@ if($ordenacao_vl == "ascendente") {
                     <input type="hidden" name="ordenacao" value="<?php echo $ordenacao_vl ?>">
                     <button class="btn btn-lg btn-primary btn-ordenacao">Mudar ordenação</button>
                 </form>
-                <?php if(is_array($clientes)): ?>
+                <?php if($clientes  instanceof PDOStatement): ?>
                 <div class="col-sm-4 lista">
                     <ul class="list-group">                        
                         <?php
                             $html = "";
-                            foreach($clientes as $cliente) {
-                                $tipo = $cliente->getTipo();
+                            while($cliente = $clientes->fetch(PDO::FETCH_ASSOC)) {
+                                $tipo = $cliente["tipo"];
                                 $html.= "<li class='list-group-item cliente'>";
-                                $html.= "<b>{$cliente->getNome()}</b>";
+                                $html.= "<b>{$cliente["nm_cliente"]}</b>";
                                 $html.= "<i>Pessoa {$tipo}</i>";
-                                $html.= "<span class='stars stars-{$cliente->getNota()}'></span>";
+                                $html.= "<span class='stars stars-{$cliente["nota"]}'></span>";
                                 $html.= "<div class='info-cliente'>";
                                 $html.= "   <p>";
                                 if($tipo == "fisica") {
-                                    $html.= "       <b>CPF:</b> {$cliente->getCpf()}<br>";
+                                    $html.= "       <b>CPF:</b> {$cliente["cpf"]}<br>";
                                 } else {
-                                    $html.= "       <b>CNPJ:</b> {$cliente->getCnpj()}<br>";
+                                    $html.= "       <b>CNPJ:</b> {$cliente["cnpj"]}<br>";
                                 }
-                                $html.= "       <b>Endereço:</b>{$cliente->getEndereco()}<br>";
-                                $html.= "       <b>Telefone:</b>{$cliente->getTelefone()}<br>";
-                                if($cliente->getEnderecoCobranca() != null) {
-                                    $html.= "<b>Endereço para cobrança:</b>{$cliente->getEnderecoCobranca()}";
+                                $html.= "       <b>Endereço:</b>{$cliente["endereco_cliente"]}<br>";
+                                $html.= "       <b>Telefone:</b>{$cliente["telefone"]}<br>";
+                                if($cliente["endereco_cobranca_cliente"] != null) {
+                                    $html.= "<b>Endereço para cobrança:</b>{$cliente["endereco_cobranca_cliente"]}";
                                 }
                                 $html.= "   </p>";
                                 $html.= "</div>";

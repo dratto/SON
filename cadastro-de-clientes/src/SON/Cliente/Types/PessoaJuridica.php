@@ -29,4 +29,7 @@ class PessoaJuridica extends Cliente implements PJInterface {
         $this->cnpj = $cnpj;
         return $this;
     }
+    public function getCodigo() {
+        return $this->cnpj;
+    }
 }
