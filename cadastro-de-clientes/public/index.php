@@ -1,18 +1,11 @@
 <?php
-define('CLASS_DIR', __DIR__ . '/../src/');
-set_include_path(get_include_path().PATH_SEPARATOR.CLASS_DIR);
-function my_autoload ($pClassName) {
-    require_once CLASS_DIR . str_replace("\\", "/", $pClassName) . ".php";
-}
-spl_autoload_register("my_autoload");
+
+require_once __DIR__.'/autoload.php';
 
 $ordenacao = ($_POST["ordenacao"] == "ASC") ? "DESC" : "ASC" ; 
 
-$cliente = new SON\Cliente\Types\PessoaJuridica("Carlos","065.485.999-78","Rua Pereira Coutinho, 627","99234-9448", 5);
-$db = new SON\DB\DBConection();
-$db->persist($cliente);
-$db->flush();
-
+$pdo = new PDO("mysql:dbname=teste;host=localhost", "root", "");
+$db = new SON\DB\DBConection($pdo);
 $clientes = $db->getClientes($ordenacao);
 ?>
 <!DOCTYPE html>
@@ -28,7 +21,7 @@ $clientes = $db->getClientes($ordenacao);
             <div class="listagem">
                 <h1>Listagem de clientes</h1> 
                 <form method="post" action="">
-                    <input type="hidden" name="ordenacao" value="<?php echo $ordenacao_vl ?>">
+                    <input type="hidden" name="ordenacao" value="<?php echo $ordenacao ?>">
                     <button class="btn btn-lg btn-primary btn-ordenacao">Mudar ordenação</button>
                 </form>
                 <?php if($clientes  instanceof PDOStatement): ?>
