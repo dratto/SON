@@ -13,14 +13,14 @@ class PessoaFisica extends Cliente implements PFInterface {
     
     private $cpf;   
     
-    public function __construct($nome, $cpf, $endereco, $telefone, $nota, $enderecoCobranca = null) {
-        $this->setNome($nome)
-             ->setEndereco($endereco)
-             ->setNota($nota)
-             ->setTelefone($telefone)
+    public function __construct($dados) {
+        $this->setNome($dados["nome"])
+             ->setEndereco($dados["endereco"])
+             ->setNota($dados["nota"])
+             ->setTelefone($dados["telefone"])
              ->setTipo("fisica")
-             ->setEnderecoCobranca($enderecoCobranca);
-        $this->cpf = $cpf;
+             ->setEnderecoCobranca($dados["enderecoCobranca"]);
+        $this->cpf = $dados["cpf"];
     }
     public function getCPF() {
         return $this->cpf;        

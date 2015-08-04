@@ -10,7 +10,7 @@ use SON\Cliente\Interfaces\GrauImportanciaInterface;
  * @author Diogo Ratto <contato@diogoratto.com.br>
  * 
  */
-class Cliente implements EnderecoCobrancaInterface,  GrauImportanciaInterface {
+abstract class Cliente implements EnderecoCobrancaInterface,  GrauImportanciaInterface {
     
     protected $nome;
     protected $endereco;
@@ -61,4 +61,5 @@ class Cliente implements EnderecoCobrancaInterface,  GrauImportanciaInterface {
         $this->enderecoCobranca = $enderecoCobranca;
         return $this;
     }
+    public abstract function getCodigo();
 }
